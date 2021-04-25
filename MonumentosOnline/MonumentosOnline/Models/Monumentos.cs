@@ -76,7 +76,7 @@ namespace MonumentosOnline.Models {
         /// FK para o Utilizador criador do Monumento
         /// </summary>
         [ForeignKey(nameof(Utilizador))]
-        public int UtilizadorFK { get; set; }
+        public int? UtilizadorFK { get; set; }
         public Utilizadores Utilizador { get; set; }
 
         // ###################################################

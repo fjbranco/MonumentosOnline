@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MonumentosOnline.Data;
 
 namespace MonumentosOnline.Migrations
 {
     [DbContext(typeof(Monumentos_OnlineDB))]
-    partial class Monumentos_OnlineDBModelSnapshot : ModelSnapshot
+    [Migration("20210425153132_CorrecaoFKZeroMuitos")]
+    partial class CorrecaoFKZeroMuitos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

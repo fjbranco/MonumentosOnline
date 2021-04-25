@@ -31,7 +31,7 @@ namespace MonumentosOnline.Models {
         /// FK para a Característica
         /// </summary>
         [ForeignKey(nameof(Caracteristica))]
-        public int CaracteristicaFK { get; set; }
+        public int? CaracteristicaFK { get; set; }
         public Caracteristicas Caracteristica { get; set; }
     }
 }
