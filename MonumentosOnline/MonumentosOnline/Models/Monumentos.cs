@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,9 +12,17 @@ namespace MonumentosOnline.Models {
     /// </summary>
     public class Monumentos {
 
+        public Monumentos() {
+            // Inicializar a lista de Imagens de cada um dos Monumentos
+            ListaImagens = new HashSet<Imagens>();
+            // Inicializar a lista de Características de cada um dos Monumentos
+            ListaCaracteristicas = new HashSet<CaractMonumentos>();
+        }
+
         /// <summary>
         /// Identificador de cada um dos Monumentos
         /// </summary>
+        [Key]
         public int Id { get; set; }
 
         /// <summary>
@@ -59,5 +69,28 @@ namespace MonumentosOnline.Models {
         /// Define a Coordenada Longitude do Monumento
         /// </summary>
         public string CoordLongitude { get; set; }
+
+        // ***************************************************
+
+        /// <summary>
+        /// FK para o Utilizador criador do Monumento
+        /// </summary>
+        [ForeignKey(nameof(Utilizador))]
+        public int UtilizadorFK { get; set; }
+        public Utilizadores Utilizador { get; set; }
+
+        // ###################################################
+
+        // associar os Monumentos às Imagens
+        /// <summary>
+        /// Lista de Imagens do Monumento
+        /// </summary>
+        public ICollection<Imagens> ListaImagens { get; set; }
+
+        // associar os Monumentos às Caraterísticas
+        /// <summary>
+        /// Lista de Características do Monumento
+        /// </summary>
+        public ICollection<CaractMonumentos> ListaCaracteristicas { get; set; }
     }
 }
