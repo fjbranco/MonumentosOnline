@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore; // necessário para que a EF seja invocada
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,6 +31,17 @@ namespace MonumentosOnline {
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            // ******************************************
+            // configurar o acesso à BD
+            // ******************************************
+            services.AddDbContext<Monumentos_OnlineDB>(
+                options => options.UseSqlServer(
+                    Configuration.GetConnectionString("myConnectionString")
+                    )
+                );
+            // ******************************************
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
